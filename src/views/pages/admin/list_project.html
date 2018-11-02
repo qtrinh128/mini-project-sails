@@ -1,0 +1,116 @@
+<% if (notices.length > 0) { %>
+  <% _.each(notices, function (notice) { %>
+  <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <i class="fa fa-check-circle"></i> <%= notice.message %>
+    </div>
+        <% }) %>
+  <% } %>
+
+    <div class="col-md-12">
+
+      <!-- TABLE HOVER -->
+      <div class="panel">
+        <!-- phan quyen -->
+        <% if(req.session.user.is_admin === true){%>
+          <a class="btn btn-primary" href="<%= sails.getUrlFor('admin/project/ProjectController.add') %>">Add new project</a>
+
+          <% } %>
+            <div class="panel-heading">
+              <h3 class="panel-title">List project</h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title project</th>
+                    <th>Edit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(totalPages === 0) {%>
+                    <% }else{ %>
+                      <% 
+              let stt = 1 + (currentPage - 1 ) * limit;
+              _.each(listProject, function(project){ %>
+                        <tr>
+                          <td>
+                            <%= stt %>
+                          </td>
+                          <td>
+                            <%= project.name %>
+                          </td>
+                          <td>
+                            <a class="btn btn-info" href="/admin/edit_project?id=<%= project.id %>">Edit</a>
+                            <a class="btn btn-danger" href="/admin/delete_project?id=<%= project.id %>">Delete</a>
+                          </td>
+                        </tr>
+                        <% 
+                stt++;
+                  }) %>
+                          <% } %>
+
+                </tbody>
+              </table>
+            </div>
+            <!-- PAGINATION BEGIN -->
+        <div class="text-center">
+            <nav aria-label="pagination">
+                <% if(totalPages > 1){ %>
+
+                <ul class="pagination justify-content-center">
+                    <% if(currentPage == 1){ %>
+                    <li class="disabled">
+                        <a class="grey-button button-pagination semi-rounded">First</a>
+                    </li>
+                    <% }else { %>
+                    <li class="page-item">
+                        <a href="<%= sails.getUrlFor('admin/project/ProjectController.show') %>?page=1" class="grey-button-bordered button-pagination semi-rounded"> First</a>
+                    </li>
+                    <% } %>
+                    <% let n = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
+                    <% if(n != 1){ %>
+                    <li class="disabled">
+                        <a class="grey-button-bordered button-pagination semi-rounded">...</a>
+                    </li>
+                    <% } %>
+                    <% for(; n <= (Number(currentPage) + 4) && n <= totalPages; n++){ %>
+                    <% if(n == currentPage){ %>
+                    <li class="active page-item">
+                        <a class="grey-button button-pagination semi-rounded">
+                            <%= n %></a>
+                    </li>
+                    <% }else { %>
+                    <li class="page-item">
+                        <a href="<%= sails.getUrlFor('admin/project/ProjectController.show') %>?page=<%= n %>" class="grey-button-bordered button-pagination semi-rounded">
+                            <%= n %>
+                        </a>
+                    </li>
+                    <% } %>
+                    <% if((n == Number(currentPage) + 4 ) && n < totalPages ){ %>
+                    <li class="disabled">
+                        <a class="grey-button-bordered button-pagination semi-rounded">...</a>
+                    </li>
+                    <% } %>
+                    <% } %>
+                    <% if(n == totalPages){ %>
+                    <li class="disabled">
+                        <a class="grey-button-bordered button-pagination semi-rounded">Last</a>
+                    </li>
+                    <% }else { %>
+                    <li class="page-item">
+                        <a href="<%= sails.getUrlFor('admin/project/ProjectController.show') %>?page=<%= totalPages %>" class="grey-button-bordered button-pagination semi-rounded">Last</a>
+                    </li>
+                    <% } %>
+
+                </ul>
+                <% } %>
+
+            </nav>
+        </div>
+        <!-- PAGINATION END -->
+      </div>
+
+      <!-- END TABLE HOVER -->
+    </div>

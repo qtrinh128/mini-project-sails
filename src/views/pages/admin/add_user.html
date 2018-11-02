@@ -1,0 +1,74 @@
+<div class="panel">
+        <a class="btn btn-default" href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>">Back to home</a>
+        <div class="panel-heading">
+            <h3 class="panel-title">Add user</h3>
+        </div>
+        <div class="panel-body">
+            <form action="<%= sails.getUrlFor('admin/user/UserController.add') %>" method="POST" enctype="multipart/form-data">
+                <label for="username">Name user</label>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            <input type="text" class="form-control" name="username">
+            <br>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email">
+            <br>
+            
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" name="password">
+            <br>
+            <label for="pwd">Re-password</label>
+            <input type="password" class="form-control" name="repassword">
+            <br>
+            <% if (notices.length > 0) { %>
+                <div class="alert alert-danger">
+                  <ul>
+                    <% _.each(notices, function (notice) { %>
+                    <li style="text-align: left"><%= notice.message %></li>
+                    <% }) %>
+                  </ul>
+                </div>
+                <% } %>
+            <br>
+            <label for="">Admin</label>
+            <select class="form-control" name="isAdmin">
+                    <option value="true">admin</option>
+                    <option value="false">staff</option>
+            </select>
+            <label for="">Active</label>
+            <select class="form-control" name="isActive">
+                    <option value="true">enable</option>
+                    <option value="false">disable</option>
+            </select>
+            <br>
+            <label for="avatar">Avatar</label>
+            <input type="hidden" name="nameFile" id="nameFile">
+            <input type="file" class="form-control" id="idFile" name="avatar" onchange= "showname('idFile', 'nameFile')">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>
+                                <input type="submit" class="btn btn-primary" name="btn-add" value="Add new">
+                        </td>
+                        <td>
+                                <a class="btn btn-default" href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>">Back to home</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+    </div>
+    <!-- Nhan ten file anh -->
+    <script>
+        function showname(idInputFile, idInputText) {
+        let name = document.getElementById(idInputFile);
+        
+        try {
+            document.getElementById(idInputText).value = name.files.item(0).name;
+
+        } catch (error) {
+            document.getElementById(idInputText).value = '';            
+        }
+    };
+
+    </script>

@@ -1,0 +1,57 @@
+<div class="panel">
+    <a class="btn btn-default" href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>">Back to home</a>
+    <div class="panel-heading">
+        <h3 class="panel-title">Add user</h3>
+    </div>
+    <div class="panel-body">
+        <form action="<%= sails.getUrlFor('admin/user/UserController.delete') %>" method="POST">
+            <label for="username">Name user</label>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            <input type="hidden" class="form-control" name="id" value="<%= user.id %>">
+            <input type="text" class="form-control" name="username" value="<%= user.name %>">
+
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" value="<%= user.email %>">
+            <br>
+            <label for="">Admin</label>
+            <select class="form-control" name="isAdmin">
+                <% if(user.is_admin === true) {%>
+                    <option>Admin</option>
+                    <% }else{ %>
+                        <option>Staff</option>
+                        <% }%>
+            </select>
+            <label for="">Active</label>
+            <select class="form-control" name="isActive">
+                <% if(user.is_active === true) {%>
+                    <option>Enable</option>
+                    <% }else{ %>
+                        <option>Disable</option>
+                        <% }%>
+            </select>
+            <label for="avatar">Avatar</label>
+            <img src="/admin/img/avatar-user/<%= user.avatar %>" alt="avatar" width="200" height="200">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td class="col-sm-4">
+                            <input type="submit" class="btn btn-danger" name="btn-delete" value="Delete user">
+
+                        </td>
+                        <td class="col-sm-4">
+                            <% if(!user.is_admin){%>
+                                <a class="btn btn-success" href="<%= sails.getUrlFor('admin/user/UserController.edit') %>?id=<%= user.id %> %>">Edit user</a>
+                            <% }else { %>
+                                <a class="btn btn-info" href="<%= sails.getUrlFor('admin/user/UserController.deactivate') %>?id=<%= user.id %> ">Deactivate user</a>
+                            <% } %>
+                        </td>
+                        <td class="col-sm-4">
+                            <a class="btn btn-default" href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>">Back
+                                to home</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

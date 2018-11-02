@@ -1,0 +1,152 @@
+<% if (notices.length > 0) { %>
+    <% _.each(notices, function (notice) { %>
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <i class="fa fa-check-circle"></i> <%= notice.message %>
+      </div>
+          <% }) %>
+    <% } %>
+        <div class="col-md-10">
+            <% if(req.session.user.is_admin){ %>
+                <a class="btn btn-primary" href="<%= sails.getUrlFor('admin/user/UserController.add')%>">Add user</a>
+                <!-- TABLE HOVER -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">List User</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 
+                                _.each(listUser, function(user, index){ %>
+                                    <tr>
+                                        <td>
+                                            <%= index + 1 %>
+                                        </td>
+                                        <td>
+                                            <% if(user.is_admin){ %>
+                                                <p class="text-primary"><%= user.name %></p>
+                                            <% }else { %>
+                                                <p><%= user.name %></p>
+                                            <% } %>
+                                        </td>
+                                        <td>
+                                            <%= user.email %>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary" href="<%= sails.getUrlFor('admin/user/UserController.edit') %>?id=<%= user.id %>">Edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary" href="<%= sails.getUrlFor('admin/user/UserController.details') %>?id=<%= user.id %>">Detail
+                                                user
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% 
+                                }) %>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <% } else {%>
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">List User</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% 
+                                        _.each(listUser, function(user, index){ %>
+                                        <tr>
+                                            <td>
+                                                <%= index + 1 %>
+                                            </td>
+                                            <td>
+                                                <%= user.name %>
+                                            </td>
+                                        </tr>
+                                        <% 
+                                        }) %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <!-- END TABLE HOVER -->
+                        <!-- PAGINATION BEGIN -->
+                        <div class="text-center">
+                            <nav aria-label="pagination">
+                                <% if(totalPages > 1){ %>
+
+                                    <ul class="pagination justify-content-center">
+                                        <% if(currentPage == 1){ %>
+                                            <li class="disabled">
+                                                <a class="grey-button button-pagination semi-rounded">First</a>
+                                            </li>
+                                            <% }else { %>
+                                                <li class="page-item">
+                                                    <a href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>" class="grey-button-bordered button-pagination semi-rounded">
+                                                        First</a>
+                                                </li>
+                                                <% } %>
+                                                    <% let n = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
+                                                        <% if(n != 1){ %>
+                                                            <li class="disabled">
+                                                                <a class="grey-button-bordered button-pagination semi-rounded">...</a>
+                                                            </li>
+                                                            <% } %>
+                                                                <% for(; n <= (Number(currentPage) + 4) && n <= totalPages; n++){ %>
+                                                                    <% if(n == currentPage){ %>
+                                                                        <li class="active page-item">
+                                                                            <a class="grey-button button-pagination semi-rounded">
+                                                                                <%= n %></a>
+                                                                        </li>
+                                                                        <% }else { %>
+                                                                            <li class="page-item">
+                                                                                <a href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>?page=<%= n %>" class="grey-button-bordered button-pagination semi-rounded">
+                                                                                    <%= n %>
+                                                                                </a>
+                                                                            </li>
+                                                                            <% } %>
+                                                                                <% if((n == Number(currentPage) + 4 ) && n < totalPages ){ %>
+                                                                                    <li class="disabled">
+                                                                                        <a class="grey-button-bordered button-pagination semi-rounded">...</a>
+                                                                                    </li>
+                                                                                    <% } %>
+                                                                                        <% } %>
+                                                                                            <% if(n == totalPages){ %>
+                                                                                                <li class="disabled">
+                                                                                                    <a class="grey-button-bordered button-pagination semi-rounded">Last</a>
+                                                                                                </li>
+                                                                                                <% }else { %>
+                                                                                                    <li class="page-item">
+                                                                                                        <a href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>?page=<%= totalPages %>" class="grey-button-bordered button-pagination semi-rounded">Last</a>
+                                                                                                    </li>
+                                                                                                    <% } %>
+
+                                    </ul>
+                                    <% } %>
+
+                            </nav>
+                        </div>
+                        <!-- PAGINATION END -->
+        </div>

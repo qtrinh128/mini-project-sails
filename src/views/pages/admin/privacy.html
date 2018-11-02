@@ -1,0 +1,14 @@
+<div class="panel">
+    <div class="container text-center">
+        <h1 class="container">Privacy Setting Review</h1>
+    </div>
+    <div class="panel-body">
+        <div id="data-container" class="container">
+            <%- contentPrivacy.value %>
+        </div>
+        <hr>
+        <div class="container text-center">
+            <a href="<%= sails.getUrlFor('admin/privacy/PrivacyController.setting') %>" class="btn btn-primary">Edit Privacy</a>
+        </div>
+    </div>
+</div>

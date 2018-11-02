@@ -1,11 +1,11 @@
 module.exports = {
     home: (req, res)=>{
-        return res.send('xin chao the gioi');
+        return res.view('pages/home/homepage', {layout: 'layouts/home/main'});
     },
     login: (req, res)=>{
-        return res.send('trang dang nhap');
+        return res.view('pages/admin/signin');
     },
     signup: (req, res)=>{
-        return res.send('trang dang ky');
+        return res.view('pages/admin/signup');
     }
 }

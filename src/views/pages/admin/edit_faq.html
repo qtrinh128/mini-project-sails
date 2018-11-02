@@ -1,0 +1,20 @@
+<div class="panel">
+    <div class="container text-center">
+        <h1>Edit FAQ</h1>
+    </div>
+    <div class="panel-body">
+        <form action="<%= sails.getUrlFor('admin/faq/FaqController.Edit') %>?id=<%= faqs.id %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Question</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="question" rows="3"> <%= faqs.question %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Answer</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="answer" rows="5"> <%= faqs.answer %></textarea>
+            </div>
+            <div class="container text-center">
+                <button type="submit" class="btn btn-primary">Submit</button></div>
+        </form>
+    </div>
+</div>

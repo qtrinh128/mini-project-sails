@@ -1,0 +1,104 @@
+<div class="page-title jarallax black-overlay-20" data-jarallax data-speed="0.6" style="background-image: url('home/img/content/bgs/bg1.jpg');">
+    <div class="container">
+        <h1>Projects</h1>
+        <ul>
+            <li>
+                <a href="<%= sails.getUrlFor('HomeController.home') %>">Home</a>
+            </li>
+            <li>
+                <a href="<%= sails.getUrlFor('homepage/project/ProjectController.show') %>">Projects</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="section-block">
+    <div class="container">
+        <div class="grid-gallery-3col gallery-style-1 clearfix">
+
+            <% if(totalPages <= 0){ %>
+                <h3>Projects empty</h3>
+                <% } else { %>
+                    <% if(listProject.length > 0){ %>
+                        <% _.each(listProject, function(project){ %>
+                            <a href="<%= project.link %>" target="blank">
+                                <div class="gallery-item"><img src="/home/img/content/product/<%= project.image %>" title="image"
+                                        alt="img">
+                                    <div class="gallery-overlay">
+                                        <div class="gallery-content">
+                                            <div class="gallery-content-inner">
+                                                <h5 style="color: white">
+                                                    <%= project.name %>
+                                                </h5>
+                                                <p>
+                                                    <%= project.description %>
+                                                        <p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <% }); %>
+                                <% } %>
+                                    <% } %>
+
+        </div>
+        <!-- PAGINATION BEGIN -->
+        <div class="mt-30 center-holder">
+                <nav aria-label=" my-pagination">
+                    <% if(totalPages > 1){ %>
+    
+                    <ul class="pagination justify-content-center">
+                        <% if(currentPage == 1){ %>
+                        <li class="disabled">
+                            <a class="grey-button button-pagination semi-rounded">First</a>
+                        </li>
+                        <% }else { %>
+                        <li class="page-item">
+                            <a href="<%= sails.getUrlFor('homepage/project/ProjectController.show') %>?page=1" class="grey-button-bordered button-pagination semi-rounded"> First</a>
+                        </li>
+                        <% } %>
+                        <% let n = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
+                        <% if(n != 1){ %>
+                        <li class="disabled">
+                            <a class="grey-button-bordered button-pagination semi-rounded">...</a>
+                        </li>
+                        <% } %>
+                        <% for(; n <= (Number(currentPage) + 4) && n <= totalPages; n++){ %>
+                        <% if(n == currentPage){ %>
+                        <li class="active page-item">
+                            <a class="grey-button button-pagination semi-rounded">
+                                <%= n %></a>
+                        </li>
+                        <% }else { %>
+                        <li class="page-item">
+                            <a href="<%= sails.getUrlFor('homepage/project/ProjectController.show') %>?page=<%= n %>" class="grey-button-bordered button-pagination semi-rounded">
+                                <%= n %>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if((n == Number(currentPage) + 4 ) && n < totalPages ){ %>
+                        <li class="disabled">
+                            <a class="grey-button-bordered button-pagination semi-rounded">...</a>
+                        </li>
+                        <% } %>
+                        <% } %>
+                        <% if(n == totalPages){ %>
+                        <li class="disabled">
+                            <a class="grey-button-bordered button-pagination semi-rounded">Last</a>
+                        </li>
+                        <% }else { %>
+                        <li class="page-item">
+                            <a href="<%= sails.getUrlFor('homepage/project/ProjectController.show') %>?page=<%= totalPages %>" class="grey-button-bordered button-pagination semi-rounded">Last</a>
+                        </li>
+                        <% } %>
+    
+                    </ul>
+                    <% } %>
+    
+                </nav>
+            </div>
+            <!-- PAGINATION END -->
+
+    </div>
+</div>

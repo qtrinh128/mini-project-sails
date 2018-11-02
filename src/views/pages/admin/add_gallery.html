@@ -1,0 +1,109 @@
+<!-- UPLOAD TITLE + RESET JS BEGIN -->
+<script language="Javascript">
+    function uniqueValue() {
+        return Date.now() + Math.random().toString(36).substr(2, 16);
+    };
+    function showname(idInputFile, idInputText, idInputText1) {
+        let name = document.getElementById(idInputFile);
+        try {
+            document.getElementById(idInputText).value = 'imgGallery_' + uniqueValue() + name.files.item(0).name;
+        } catch (error) {
+            document.getElementById(idInputText).value = '';
+        }
+    };
+
+    function fileUpload(form, action_url, div_id) {
+        // Create the iframe...
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("id", "upload_iframe");
+        iframe.setAttribute("name", "upload_iframe");
+        iframe.setAttribute("width", "0");
+        iframe.setAttribute("height", "0");
+        iframe.setAttribute("border", "0");
+        iframe.setAttribute("style", "width: 0; height: 0; border: none;");
+
+        // Add to document...
+        form.parentNode.appendChild(iframe);
+        window.frames['upload_iframe'].name = "upload_iframe";
+
+        iframeId = document.getElementById("upload_iframe");
+
+        // Add event...
+        var eventHandler = function () {
+
+            if (iframeId.detachEvent) iframeId.detachEvent("onload", eventHandler);
+            else iframeId.removeEventListener("load", eventHandler, false);
+
+            // Message from server...
+            if (iframeId.contentDocument) {
+                content = iframeId.contentDocument.body.innerHTML;
+            } else if (iframeId.contentWindow) {
+                content = iframeId.contentWindow.document.body.innerHTML;
+            } else if (iframeId.document) {
+                content = iframeId.document.body.innerHTML;
+            }
+
+            document.getElementById(div_id).innerHTML = content;
+
+            // Del the iframe...
+            setTimeout('iframeId.parentNode.removeChild(iframeId)', 250);
+        }
+
+        if (iframeId.addEventListener) iframeId.addEventListener("load", eventHandler, true);
+        if (iframeId.attachEvent) iframeId.attachEvent("onload", eventHandler);
+
+        // Set properties of form...
+        form.setAttribute("target", "upload_iframe");
+        form.setAttribute("action", action_url);
+        form.setAttribute("method", "post");
+        form.setAttribute("enctype", "multipart/form-data");
+        form.setAttribute("encoding", "multipart/form-data");
+
+        // Submit the form...
+        form.submit();
+        if (document.getElementById('imageUpload').value !== '') {
+            document.getElementById(div_id).innerHTML = "<div class='alert alert-warning alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><i class='fa fa-check-circle'></i> Waiting upload....</div>"
+            let my_timer;
+            my_timer = setTimeout(function () {
+                document.getElementById(div_id).innerHTML = "<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><i class='fa fa-check-circle'></i> Upload Gallery Success!</div>"
+            }, 5000);
+        }
+    }
+</script>
+<!-- UPLOAD TITLE + RESET JS END -->
+
+
+<div class="panel">
+    <div class="container text-center">
+        <h1>Add New Gallery</h1>
+    </div>
+    <hr>
+    <div class="panel-body">
+        <p><b>Note: <li></b><i style="color:brown">Upload ảnh gallery chất lượng, tỷ lệ khung hình with:heght = 1:1
+                (khuyến khích: 1000px : 900px)</i></p>
+        </li>
+        <li></b><i style="color:brown">Có thể upload nhiều ảnh cùng lúc nhưng tổng dung lượng nhỏ hơn 100Mb.</i></p>
+        </li>
+        <form>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="hidden" class="form-control" id="imageUpload" name="imageUpload"
+                                aria-describedby="emailHelp">
+                            <label for="exampleFormControlFile1">Upload Gallery:</label>
+                            <input type="file" class="form-control-file" id="datafile" name="datafile" onchange="showname('datafile', 'imageUpload')"
+                                multiple />
+                        </td>
+                        <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+                        <td>
+                            <input type="button" class="btn btn-primary" value="Upload" onClick="fileUpload(this.form,'/admin/gallery/add','divUploadSuccess'); return false;">
+                        </td>
+
+                    <tr>
+                        <div id="divUploadSuccess">
+                        </div>
+                    </tr>
+        </form>
+    </div>
+</div>

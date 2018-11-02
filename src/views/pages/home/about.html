@@ -1,0 +1,60 @@
+<div class="page-title jarallax black-overlay-20" data-jarallax data-speed="0.6"
+     style="background-image: url('/home/img/content/bgs/bg1.jpg');">
+  <div class="container"><h1>About Us</h1>
+    <ul>
+      <li><a href="<%= sails.getUrlFor('HomeController.home') %>">Home</a></li>
+      <li><a href="<%= sails.getUrlFor('HomeController.about') %>">About Us</a></li>
+    </ul>
+  </div>
+</div>
+<div class="section-block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-sm-12 col-12 offset-md-1">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-12">
+            <img src="/home/img/content/about/about2.jpg" class="shadow-light rounded-border" alt="img">
+            <div class="section-heading left-holder mt-30"><h4 class="bold">The Benefits of Outsourcing</h4>
+              <div class="section-heading-line"></div>
+            </div>
+            <div class="text-content-big"><p>Outsourcing is a common practice of contracting out business functions and
+              processes to third party providers. The benefits of outsourcing can be substantial - from cost savings and
+              efficiency gains to greater competitive advantage.</p></div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-12">
+            <div class="section-heading left-holder"><h4 class="bold">Why Outsourcing?</h4>
+              <div class="section-heading-line"></div>
+            </div>
+            <div class="text-content-big"><p>Outsourcing has been a long practice for most companies, but the onset of
+              the Internet has allowed it to bloom and become bigger as the years go by. If you want to be on
+              the advantage when it comes to your business, we recommend finding the right outsourcing company
+              who can provide you with extra help.</p></div>
+            <img src="/home/img/content/about/about3.jpg" class="shadow-light rounded-border mt-20" alt="img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-block-parallax jarallax" data-jarallax data-speed="0.6"
+     style="background-image: url('/home/img/content/classic/homebg1.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="feature-block-3 center-holder"><i class="icon-website"></i><h4>Web Development</h4>
+          <p>Web Development provides an effective and robust medium for communicating and delivering content
+            to your customers and clients.</p></div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="feature-block-3 center-holder"><i class="icon-mobile-phone"></i><h4>Mobile App Development</h4>
+          <p>We design and develop high-performance, innovative apps for our clients to take their nascent ideas to the next level.</p></div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="feature-block-3 center-holder"><i class="icon-shopping-cart"></i><h4>SaaS Development</h4>
+          <p>Our team of software developers is trained to provide you with the best SaaS solution development services.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- partial('./partials/team.html') %>
+<%- partial('./partials/customer.html') %>

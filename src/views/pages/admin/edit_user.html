@@ -1,0 +1,89 @@
+<div class="panel">
+    <a class="btn btn-default" href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>">Back to home</a>
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit user</h3>
+    </div>
+    <div class="panel-body">
+        <form action="<%= sails.getUrlFor('admin/user/UserController.edit') %>" method="POST" enctype="multipart/form-data">
+            <label for="username">Name user</label>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            <input type="hidden" class="form-control" name="id" value="<%= user.id %>">
+            <input type="text" class="form-control" name="username" value="<%= user.name %>">
+            <br>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" value="<%= user.email %>">
+            <br>
+
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" name="password" >
+            <br>
+            <label for="pwd">Re-password</label>
+            <input type="password" class="form-control" name="repassword" >
+            <br>
+            <% if (notices.length > 0) { %>
+                <div class="alert alert-danger">
+                    <ul>
+                        <% _.each(notices, function (notice) { %>
+                            <li style="text-align: left">
+                                <%= notice.message %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+                <% } %>
+                <br>
+                    <label for="">Admin</label>
+                    <select class="form-control" name="isAdmin">
+                        <% if(user.is_admin){%>
+                            <option value="true">Admin</option>
+                            <option value="false">Staff</option>
+
+                        <% } else {%>
+                            <option value="false">Staff</option>
+                            <option value="true">Admin</option>
+                        <% } %>
+                    </select>
+                
+                    <label for="">Active</label>
+                    <select class="form-control" name="isActive">
+                            <% if(user.is_active){%>
+                            <option value="true">Enable</option>
+                            <option value="false">Disable</option>
+                            <% } else {%>
+                                <option value="false">Disable</option>
+                                <option value="true">Enable</option>
+                            <% } %>
+                    </select>
+                    <br>
+                    <input type="hidden" name="nameFile" id="nameFile">
+                    <input type="file" class="form-control" id="idFile" name="avatar" onchange="showname('idFile', 'nameFile')">
+                    <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>
+                    <input type="submit" class="btn btn-primary" name="btn-add" value="Edit user">
+
+                                    </td>
+                                    <td>
+                                            <a class="btn btn-default" href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>">Back to home</a>
+                                    </td>
+                                    
+                                </tr>
+                            </tbody>
+                    </table>
+        </form>
+    </div>
+</div>
+<!-- Nhan ten file anh -->
+<script>
+    function showname(idInputFile, idInputText) {
+        let name = document.getElementById(idInputFile);
+        try {
+            document.getElementById(idInputText).value = name.files.item(0).name;
+
+        } catch (error) {
+            document.getElementById(idInputText).value = '';
+        }
+    };
+
+</script>

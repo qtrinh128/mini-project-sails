@@ -1,0 +1,244 @@
+<div class="page-title jarallax black-overlay-20" data-jarallax data-speed="0.6" style="background-image: url('home/img/content/bgs/bg1.jpg');">
+    <div class="container">
+        <h1>FAQ page</h1>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li><a href="#">FAQ page</a></li>
+        </ul>
+    </div>
+</div>
+<div class="section-block-grey section-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-12">
+                <div class="feature-float clearfix">
+                    <div class="feature-float-icon"><i class="icon-support"></i></div>
+                    <div class="feature-float-content">
+                        <h4>Support Team</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-12">
+                <div class="feature-float clearfix">
+                    <div class="feature-float-icon"><i class="icon-user4"></i></div>
+                    <div class="feature-float-content">
+                        <h4>Professional Advisors</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-12">
+                <div class="feature-float clearfix">
+                    <div class="feature-float-icon"><i class="icon-target"></i></div>
+                    <div class="feature-float-content">
+                        <h4>High Quality</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-sm-6 col-12 container">
+                <div class="section-heading left-holder">
+                    <h4 class="bold">Get answers from Professionals !</h4>
+                    <div class="section-heading-line"></div>
+                </div>
+                <div id="accordion" role="tablist" class="mt-15">
+
+                    <% if(faqs.length <= 0){ %>
+                        <p>Don't find FAQ...</p>
+                        <% } else { %>
+                            <% let heading = "headingTwo" %>
+                            <% let collapse = "collapseTwo" %>
+                                    <% for(let i = 0; i < faqs.length; i++){ %>
+                                        <% if(i == 0){ %>
+                                            <% let heading = "headingOne" %>
+                                            <% let collapse = "collapseOne" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>
+
+                                        <% if(i == 1){ %>
+                                            <% let heading = "headingTwo" %>
+                                            <% let collapse = "collapseTwo" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <% if(i == 2){ %>
+                                            <% let heading = "headingThree" %>
+                                            <% let collapse = "collapseThree" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <% if(i == 3){ %>
+                                            <% let heading = "headingFour" %>
+                                            <% let collapse = "collapseFour" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <% if(i == 4){ %>
+                                            <% let heading = "headingFive" %>
+                                            <% let collapse = "collapseFive" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <% if(i == 5){ %>
+                                            <% let heading = "headingSix" %>
+                                            <% let collapse = "collapseSix" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <% if(i == 6){ %>
+                                            <% let heading = "headingSeven" %>
+                                            <% let collapse = "collapseSeven" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <% if(i == 7){ %>
+                                            <% let heading = "headingEight" %>
+                                            <% let collapse = "collapseEight" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>
+                                        
+                                        <% if(i == 8){ %>
+                                            <% let heading = "headingNine" %>
+                                            <% let collapse = "collapseNine" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>                                        
+
+                                        <% if(i == 9){ %>
+                                            <% let heading = "headingTen" %>
+                                            <% let collapse = "collapseTen" %>
+                                            <div class="card card-primary">
+                                                    <div class="card-header card-header-primary" role="tab" id="<%= heading %>">
+                                                        <h5 class="mb-0"> <a class="collapsed" data-toggle="collapse" href="#<%= collapse %>" aria-expanded="true" aria-controls="<%= collapse %>">
+                                                                <%= i+1 %>. <%= faqs[i].question %> </a> </h5>
+                                                    </div>
+                                                    <div id="<%= collapse %>" class="collapse" role="tabpanel" aria-labelledby="<%= heading %>" data-parent="#accordion">
+                                                        <div class="card-body card-body-primary">
+                                                            <p><%= faqs[i].answer %></p>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        <% } %>                                        
+
+                                        <% } %>
+                                            <% } %>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="section-block-grey section-sm">
+    <div class="container">
+        <div class="owl-carousel owl-theme clients" id="clients">
+            <div class="item"> <img src="home/img/content/clients/c-1.png" alt="img"> </div>
+            <div class="item"> <img src="home/img/content/clients/c-2.png" alt="img"> </div>
+            <div class="item"> <img src="home/img/content/clients/c-3.png" alt="img"> </div>
+            <div class="item"> <img src="home/img/content/clients/c-4.png" alt="img"> </div>
+            <div class="item"> <img src="home/img/content/clients/c-5.png" alt="img"> </div>
+            <div class="item"> <img src="home/img/content/clients/c-6.png" alt="img"> </div>
+        </div>
+    </div>
+</div>

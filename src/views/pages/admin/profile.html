@@ -1,0 +1,52 @@
+<div class="panel">
+    <a class="btn btn-default" href="<%= sails.getUrlFor('admin/user/UserController.showUser') %>">Back to home</a>
+    <div class="panel-heading">
+        <h3 class="panel-title">Add user</h3>
+    </div>
+    <div class="panel-body">
+        <form action="<%= sails.getUrlFor('admin/user/UserController.profile') %>" method="POST" enctype="multipart/form-data">
+            <label for="username">Name user</label>
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            <input type="hidden" class="form-control" name="id" value="<%= user.id %>">
+            <input type="text" class="form-control" name="username" value="<%= user.name %>">
+            <br>
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" name="password">
+            <br>
+            <label for="pwd">Re-password</label>
+            <input type="password" class="form-control" name="repassword">
+            <br>
+            <% if (errors.length > 0) { %>
+                <div class="alert alert-danger">
+                    <ul>
+                        <% _.each(errors, function (error) { %>
+                            <li style="text-align: left">
+                                <%= error.message %>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+                <% } %>
+                    <br>
+                    <label for="avatar">Avatar</label>
+                    <img src="/admin/img/avatar-user/<%= user.avatar %>" alt="image" width="200" height="200">
+                    <input type="hidden" name="nameFile" id="nameFile">
+                    <input type="file" class="form-control" id="idFile" name="avatar" onchange="showname('idFile', 'nameFile')">
+                    <br>
+                    <input type="submit" class="btn btn-primary" name="btn-add" value="Edit">
+        </form>
+    </div>
+</div>
+<!-- Nhan ten file anh -->
+<script>
+    function showname(idInputFile, idInputText) {
+        let name = document.getElementById(idInputFile);
+
+        try {
+            document.getElementById(idInputText).value = name.files.item(0).name;
+
+        } catch (error) {
+            document.getElementById(idInputText).value = '';
+        }
+    };
+</script>

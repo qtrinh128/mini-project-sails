@@ -1,0 +1,42 @@
+<div class="panel">
+    <div class="container text-center">
+        <h1>FAQ Setting</h1>
+    </div>
+    <hr>
+    <div class="panel-body">
+        <a href="<%= sails.getUrlFor('admin/faq/FaqController.add') %>" class="btn btn-primary">Add FAQ</a>
+        <hr>
+        <table class="table">
+            <thead class="thead-dark table-primary">
+                <tr>
+                    <th scope="col" class="col-md-1">STT</th>
+                    <th scope="col" class="col-md-3">Questions</th>
+                    <th scope="col" class="col-md-10">Answers</th>
+                    <th scope="col" class="col-md-1">Edit</th>
+                    <th scope="col" class="col-md-1">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(faqs.length <= 0){ %>
+                <% } else { %>
+                <% let i = 0 %>
+                <% _.each(faqs, function(faq){ %>
+                <tr>
+                    <th scope="row">
+                        <%= i+1 %>
+                    </th>
+                    <td> <a href="<%= sails.getUrlFor('admin/faq/FaqController.edit') %>?id=<%= faq.id %>">
+                            <%= faq.question %> </a> </td>
+                    <td>
+                        <%= faq.answer %>
+                    </td>
+                    <td><a href="<%= sails.getUrlFor('admin/faq/FaqController.edit') %>?id=<%= faq.id %>" class="btn btn-info">Edit</a></td>
+                    <td><button data-id="<%= faq.id %>" class="btn btn-danger btnDeleteFaq">Delete</button></td>
+                </tr>
+                <% i++ %>
+                <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>

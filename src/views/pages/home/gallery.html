@@ -1,0 +1,94 @@
+<div class="page-title jarallax black-overlay-20" data-jarallax data-speed="0.6" style="background-image: url('home/img/content/bgs/bg1.jpg');">
+    <div class="container">
+        <h1>Gallery</h1>
+        <ul>
+            <li><a href="<%= sails.getUrlFor('HomeController.home') %>">Home</a></li>
+            <li><a href="<%= sails.getUrlFor('homepage/gallery/GalleryController.show') %>">Gallery</a></li>
+        </ul>
+    </div>
+</div>
+<div class="section-block">
+    <div class="container">
+        <div class="grid-gallery-3col gallery-style-1 clearfix">
+
+            <% if(totalPages <= 0){ %>
+            <h3>Gallery empty</h3>
+            <% } else { %>
+            <% if(listGallery.length > 0){ %>
+            <% _.each(listGallery, function(gallery){ %>
+            <div class="gallery-item"><img src="<%= gallery.urlImg %>" title="image" alt="img">
+                <div class="gallery-overlay">
+                    <div class="gallery-content">
+                        <div class="gallery-content-inner">
+                            <a class="image-popup-gallery" href="<%= gallery.urlImg %>"> <i class="ti-zoom-in"></i></a>
+                            <a class="image-popup-gallery" href="<%= gallery.urlImg %>"><i class="ti-gallery"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <% }); %>
+            <% } %>
+            <% } %>
+
+        </div>
+ 
+        <!-- PAGINATION BEGIN -->
+        <div class="mt-30 center-holder">
+            <nav aria-label=" my-pagination">
+                <% if(totalPages > 1){ %>
+
+                <ul class="pagination justify-content-center">
+                    <% if(currentPage == 1){ %>
+                    <li class="disabled">
+                        <a class="grey-button button-pagination semi-rounded">First</a>
+                    </li>
+                    <% }else { %>
+                    <li class="page-item">
+                        <a href="<%= sails.getUrlFor('homepage/gallery/GalleryController.show') %>?page=1" class="grey-button-bordered button-pagination semi-rounded"> First</a>
+                    </li>
+                    <% } %>
+                    <% let n = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
+                    <% if(n != 1){ %>
+                    <li class="disabled">
+                        <a class="grey-button-bordered button-pagination semi-rounded">...</a>
+                    </li>
+                    <% } %>
+                    <% for(; n <= (Number(currentPage) + 4) && n <= totalPages; n++){ %>
+                    <% if(n == currentPage){ %>
+                    <li class="active page-item">
+                        <a class="grey-button button-pagination semi-rounded">
+                            <%= n %></a>
+                    </li>
+                    <% }else { %>
+                    <li class="page-item">
+                        <a href="<%= sails.getUrlFor('homepage/gallery/GalleryController.show') %>?page=<%= n %>" class="grey-button-bordered button-pagination semi-rounded">
+                            <%= n %>
+                        </a>
+                    </li>
+                    <% } %>
+                    <% if((n == Number(currentPage) + 4 ) && n < totalPages ){ %>
+                    <li class="disabled">
+                        <a class="grey-button-bordered button-pagination semi-rounded">...</a>
+                    </li>
+                    <% } %>
+                    <% } %>
+                    <% if(n == totalPages){ %>
+                    <li class="disabled">
+                        <a class="grey-button-bordered button-pagination semi-rounded">Last</a>
+                    </li>
+                    <% }else { %>
+                    <li class="page-item">
+                        <a href="<%= sails.getUrlFor('homepage/gallery/GalleryController.show') %>?page=<%= totalPages %>" class="grey-button-bordered button-pagination semi-rounded">Last</a>
+                    </li>
+                    <% } %>
+
+                </ul>
+                <% } %>
+
+            </nav>
+        </div>
+        <!-- PAGINATION END -->
+
+    </div>
+</div>

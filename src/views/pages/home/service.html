@@ -1,0 +1,65 @@
+<div class="page-title jarallax black-overlay-20" data-jarallax data-speed="0.6"
+     style="background-image: url('/home/img/content/bgs/bg1.jpg');">
+  <div class="container"><h1>Our Services</h1>
+    <ul>
+      <li><a href="<%= sails.getUrlFor('HomeController.home') %>">Home</a></li>
+      <li><a href="<%= sails.getUrlFor('HomeController.service') %>">Our Services</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section-block">
+  <div class="container">
+    <div class="section-heading center-holder">
+      <small>Full Service Web Design Agency</small>
+      <h2 class="bold">Where our solutions become your internet reality</h2>
+      <div class="section-heading-line"></div>
+      <p>Our team of Software engineers and professional developers has the technical expertise and over a decade of
+        experience in emerging software technologies and can meet all your software outsourcing demands.</p></div>
+    <div class="row mt-40">
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="feature-float clearfix">
+          <div class="feature-float-icon"><i class="icon-website"></i></div>
+          <div class="feature-float-content"><h4>Web Development</h4>
+            <p>Web Development provides an effective and robust medium for communicating and delivering
+              content to your customers and clients.</p></div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="feature-float clearfix">
+          <div class="feature-float-icon"><i class="icon-mobile-phone"></i></div>
+          <div class="feature-float-content"><h4>Mobile App Development</h4>
+            <p>We design and develop high-performance, innovative apps for our clients to take their
+              nascent ideas to the next level.</p></div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="feature-float clearfix">
+          <div class="feature-float-icon"><i class="icon-shopping-cart"></i></div>
+          <div class="feature-float-content"><h4>SaaS Development</h4>
+            <p>Our team of software developers is trained to provide you with the best SaaS solution development services.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-block-grey pb-0">
+  <div class="container">
+    <div class="testmonial-single">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 col-12"><img src="/home/img/content/marketing/an.png" class="hidden-sm-down"
+                                                   alt="img"></div>
+        <div class="col-md-7 col-sm-8 col-12 offset-md-1"><h3>Good business leaders create a vision, articulate
+          the vision, passionately own the vision, and relentlessly drive it to completion.</h3>
+          <p>We are very happy with FITi Soft; very serious and consistent in their work. Joseph and his team
+            of programmers have always been there for us all the time. This is a company I can recommend to anyone to
+            perform any work</p><h4>Roger Shelton</h4><h5>
+            Quality Control Coordinator</h5></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- partial('./partials/customer.html') %>

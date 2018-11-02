@@ -1,0 +1,13 @@
+<div class="panel">
+    <div class="panel-heading">
+        <p>Delelte gallery? <a href="<%= sails.getUrlFor('admin/project/ProjectController.show') %>">Back to home</a></p>
+    </div>
+    <div class="panel-body">
+        <form action="<%= sails.getUrlFor('admin/project/ProjectController.delete') %>" method="POST">
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="id" value="<%= id%>">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Delete">
+        </form>
+    </div>
+</div>

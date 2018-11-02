@@ -1,0 +1,49 @@
+<a class="btn btn-default" href="<%= sails.getUrlFor('admin/project/ProjectController.show') %>">Back to home</a>
+<form action="<%= sails.getUrlFor('admin/project/ProjectController.add') %>" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="_csrf" value="<%- _csrf %>" />
+  <div class="form-group">
+    <label for="#">Name project</label>
+    <input type="text" class="form-control" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="#">Link project</label>
+    <input type="text" class="form-control" name="link" required>
+  </div>
+
+  <div class="form-group">
+    <label for="#">Description</label>
+    <textarea class="form-control" name="description" rows="4" required></textarea>
+  </div>
+  <br>
+    <% if (notices.length > 0) { %>
+    <div class="alert alert-danger">
+      <ul>
+        <% _.each(notices, function (notice) { %>
+          <li style="text-align: left">
+            <%= notice.message %>
+          </li>
+          <% }) %>
+      </ul>
+    </div>
+    <% } %>
+      <div class="form-group">
+        <label for="idFile">Picture</label>
+        <input type="hidden" name="nameFile" id="nameFile">
+        <input type="file" class="form-control" name="image" id="idFile" onchange= "showname('idFile', 'nameFile')" required >
+      </div>
+      <br>
+      <input type="submit" class="btn btn-primary" name="btn-submit" value="Add new">
+</form>
+
+<script>
+  function showname(idInputFile, idInputText) {
+  let name = document.getElementById(idInputFile);
+  
+  try {
+      document.getElementById(idInputText).value = name.files.item(0).name;
+
+  } catch (error) {
+      document.getElementById(idInputText).value = '';            
+  }
+};
+</script>

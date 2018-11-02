@@ -1,0 +1,17 @@
+<div class="page-title jarallax black-overlay-20" data-jarallax data-speed="0.6" style="background-image: url('home/img/content/bgs/bg1.jpg');">
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <ul>
+            <li><a href="<%= sails.getUrlFor('HomeController.home') %>">Home</a></li>
+            <li><a href="<%= sails.getUrlFor('homepage/privacy/PrivacyController.view') %>">Privacy</a></li>
+        </ul>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div id="data-container" class="container privacy">
+        <%- contentPrivacy.value %>
+    </div>
+<hr>

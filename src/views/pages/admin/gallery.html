@@ -1,0 +1,87 @@
+<div class="panel">
+  <div class="container text-center">
+    <h1>Manager Gallery</h1>
+  </div>
+  <hr>
+  <div class="panel-body">
+    <a href="<%= sails.getUrlFor('admin/gallery/GalleryController.add') %>" class="btn btn-primary">Add Gallery</a>
+    <a href="#" class="btn btn-danger " id="btnDeleteSelectGallery">Delete</a>
+    <hr>
+    <table>
+      <% if(totalPages > 0){ %>
+      <% if(listGallery.length > 0){ %>
+      <% let i = 0 %>
+      <% _.each(listGallery, function(gallery){ %>
+      <% if((i%5) === 0){ %>
+      <tr>
+        <% } %>
+        <td>
+          <div class="gallery gallery-btn">
+            <input type="checkbox" class="btnSellectGallery" data-id="<%= gallery.id %>" hidden>
+
+            <img src="<%= gallery.urlImg %>" alt="" width="600" height="400">
+
+            <button class="topright btnDeleteGallery" data-id="<%= gallery.id %>"><span>&#9747;</span></button>
+        </td>
+        <% if(i === 4){ %>
+        <% i = -1 %>
+      </tr>
+      <% }; i++; %>
+      <% }); %>
+      <% } %>
+      <% } %>
+    </table>
+    <hr>
+    <div class="container text-center">
+      <nav aria-label=" my-pagination">
+        <% if(totalPages > 0){ %>
+
+        <ul class="pagination text-center">
+          <% if(currentPage == 1){ %>
+          <li class="disabled">
+            <a>First</a>
+          </li>
+          <% }else { %>
+          <li class="page-item">
+            <a href="<%= sails.getUrlFor('admin/gallery/GalleryController.show') %>?page=1"> First</a>
+          </li>
+          <% } %>
+          <% let n = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
+          <% if(n != 1){ %>
+          <li class="disabled">
+            <a>...</a>
+          </li>
+          <% } %>
+          <% for(; n <= (Number(currentPage) + 4) && n <= totalPages; n++){ %>
+          <% if(n == currentPage){ %>
+          <li class="active page-item">
+            <a>
+              <%= n %></a>
+          </li>
+          <% }else { %>
+          <li class="page-item">
+            <a href="<%= sails.getUrlFor('admin/gallery/GalleryController.show') %>?page=<%= n %>">
+              <%= n %> </a>
+          </li>
+          <% } %>
+          <% if((n == Number(currentPage) + 4 ) && n < totalPages ){ %>
+          <li class="disabled">
+            <a>...</a>
+          </li>
+          <% } %>
+          <% } %>
+          <% if(n == totalPages){ %>
+          <li class="disabled">
+            <a>Last</a>
+          </li>
+          <% }else { %>
+          <li class="page-item">
+            <a href="<%= sails.getUrlFor('admin/gallery/GalleryController.show') %>?page=<%= totalPages %>">Last</a>
+          </li>
+          <% } %>
+        </ul>
+        <% } %>
+      </nav>
+    </div>
+  </div>
+</div>
